@@ -21,7 +21,6 @@ body {
   font-size: 3em;
   padding: 40px;
   cursor: default;
-  opacity: 0.1;
 }
 
 .main {
@@ -33,7 +32,6 @@ body {
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-  opacity: 0.1;
 }
 
 .cell {
@@ -97,7 +95,7 @@ body {
 }
 
 .win-background {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
