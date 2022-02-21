@@ -74,6 +74,16 @@ body {
   background-size: 140px;
 }
 
+.hover-cross {
+  background: center no-repeat url('/images/cross.svg');
+  background-size: 150px;
+}
+
+.hover-zero {
+  background: center no-repeat url('/images/zero.svg');
+  background-size: 140px;
+}
+
 .btn-reset {
   position: absolute;
   width: 100px;
@@ -153,6 +163,13 @@ body {
     background-size: 90px;
   }
 
+  .hover-cross {
+    background-size: 100px;
+  }
+  .hover-zero {
+    background-size: 90px;
+  }
+
   .btn-reset {
     position: initial;
   }
@@ -180,6 +197,14 @@ body {
   .zero {
     background-size: 55px;
   }
+
+  .hover-cross {
+    background-size: 65px;
+  }
+
+  .hover-zero {
+    background-size: 55px;
+  }
 }
 
 @media(max-width: 400px) {
@@ -203,6 +228,14 @@ body {
   }
 
   .zero {
+    background-size: 45px;
+  }
+  
+  .hover-cross {
+    background-size: 50px;
+  }
+
+  .hover-zero {
     background-size: 45px;
   }
   
