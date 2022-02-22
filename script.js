@@ -4,7 +4,7 @@ const btn = document.querySelector('.btn-reset');
 let move = 'cross'; // Ход игрока Х
 let arrValueCross = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 let arrValueZero = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-const arrOfCorrectResults = [
+const arrOfCorrectResults = [ // Массив выигрышных ходов
   [1, 0, 0, 1, 0, 0, 1, 0, 0], [0, 1, 0, 0, 1, 0, 0, 1, 0],
   [0, 0, 1, 0, 0, 1, 0, 0, 1], [1, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 1, 1, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1], [0, 0, 1, 0, 1, 0, 1, 0, 0],
@@ -21,6 +21,16 @@ function dataUpdate() {
   arrValueZero = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
+// Проверяет все ли ячейки заполнены классами
+function allClassesAdded() {
+  for (let i = 0; i < cells.length; i += 1) {
+    if (cells[i].classList.contains('cross') !== true && cells[i].classList.contains('zero') !== true) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // Сравнивает массив cross или zero с многомерным массивом победных значений
 function compareArrayValues() {
   if (move === 'cross') {
@@ -29,9 +39,8 @@ function compareArrayValues() {
       for (let j = 0; j < arrOfCorrectResults[i].length; j += 1) {
         if (arrValueCross[j] === 1 && arrOfCorrectResults[i][j] === 1) {
           cross += 1;
-          console.log(cross);
           if (cross === 3) {
-            return true;
+            return 'win';
           }
         }
       }
@@ -43,16 +52,15 @@ function compareArrayValues() {
       for (let j = 0; j < arrOfCorrectResults[i].length; j += 1) {
         if (arrValueZero[j] === 1 && arrOfCorrectResults[i][j] === 1) {
           zero += 1;
-          console.log(zero);
           if (zero === 3) {
-            return true;
+            return 'win';
           }
         }
       }
       zero = 0;
     }
   }
-  return false;
+  return allClassesAdded();
 }
 
 // Проверка наличия класса в ячейке
@@ -86,6 +94,28 @@ function mouseoutElem(event) {
   }
 }
 
+// Выводит окошко конца игры
+function messageAboutWin(msg) {
+  const main = document.querySelector('.main');
+  const title = document.querySelector('.title');
+  const winBackground = document.querySelector('.win-background');
+  const winBtn = document.querySelector('.win-btn');
+  const winMessage = document.querySelector('.win-message');
+  winMessage.innerText = msg;
+  main.style.opacity = '0.1';
+  title.style.opacity = '0.1';
+  winBackground.style.display = 'flex';
+
+  // Начинает игру заново
+  winBtn.addEventListener('click', () => {
+    winMessage.innerText = '';
+    main.style.opacity = '1';
+    title.style.opacity = '1';
+    winBackground.style.display = 'none';
+    dataUpdate();
+  });
+}
+
 // Добавление cross или zero по клику
 function clickOnElem(event) {
   const cell = event.target;
@@ -96,16 +126,20 @@ function clickOnElem(event) {
     cell.classList.add('cross');
     cell.classList.remove('hover-cross');
     arrValueCross[cell.dataset.cell] = 1;
-    if (compareArrayValues()) {
-      console.log('Win X!!!');
+    if (compareArrayValues() === 'win') {
+      messageAboutWin('Win X!!!');
+    } else if (compareArrayValues()) {
+      messageAboutWin("It's a draw!");
     }
     move = 'zero';
   } else {
     cell.classList.add('zero');
     cell.classList.remove('hover-zero');
     arrValueZero[cell.dataset.cell] = 1;
-    if (compareArrayValues()) {
-      console.log('Win 0!!!');
+    if (compareArrayValues() === 'win') {
+      messageAboutWin('Win 0!!!');
+    } else if (compareArrayValues()) {
+      messageAboutWin("It's a draw!");
     }
     move = 'cross';
   }
