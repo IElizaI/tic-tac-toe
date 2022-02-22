@@ -23,7 +23,7 @@ body {
   cursor: default;
 }
 
-.whose-move {
+.whose-turn {
   font-family: 'Ubuntu', sans-serif;
   color: rgb(255, 218, 183);
   font-size: 1.2em;
