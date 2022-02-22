@@ -1,5 +1,6 @@
 const cells = document.querySelectorAll('.cell');
 const btn = document.querySelector('.btn-reset');
+const whoseMove = document.querySelector('.whose-move');
 
 let move = 'cross'; // Ход игрока Х
 let arrValueCross = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -17,6 +18,7 @@ function dataUpdate() {
     cell.classList.remove('zero');
   });
   move = 'cross';
+  whoseMove.innerText = 'Move X';
   arrValueCross = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   arrValueZero = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
@@ -96,6 +98,7 @@ function mouseoutElem(event) {
 
 // Выводит окошко конца игры
 function messageAboutWin(msg) {
+  whoseMove.innerText = '';
   const main = document.querySelector('.main');
   const title = document.querySelector('.title');
   const winBackground = document.querySelector('.win-background');
@@ -123,6 +126,7 @@ function clickOnElem(event) {
     return;
   }
   if (move === 'cross') {
+    whoseMove.innerText = 'Move 0';
     cell.classList.add('cross');
     cell.classList.remove('hover-cross');
     arrValueCross[cell.dataset.cell] = 1;
@@ -133,6 +137,7 @@ function clickOnElem(event) {
     }
     move = 'zero';
   } else {
+    whoseMove.innerText = 'Move X';
     cell.classList.add('zero');
     cell.classList.remove('hover-zero');
     arrValueZero[cell.dataset.cell] = 1;

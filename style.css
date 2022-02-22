@@ -23,6 +23,14 @@ body {
   cursor: default;
 }
 
+.whose-move {
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(255, 218, 183);
+  font-size: 1.2em;
+  cursor: default;
+  margin: 20px;
+}
+
 .main {
   width: 600px;
   height: 600px;
