@@ -65,22 +65,22 @@ body {
 }
 
 .cross {
-  background: center no-repeat url('/images/cross.svg');
+  background: center no-repeat url('./images/cross.svg');
   background-size: 150px;
 }
 
 .zero {
-  background: center no-repeat url('/images/zero.svg');
+  background: center no-repeat url('./images/zero.svg');
   background-size: 140px;
 }
 
 .hover-cross {
-  background: center no-repeat url('/images/cross.svg');
+  background: center no-repeat url('./images/cross.svg');
   background-size: 150px;
 }
 
 .hover-zero {
-  background: center no-repeat url('/images/zero.svg');
+  background: center no-repeat url('./images/zero.svg');
   background-size: 140px;
 }
 
