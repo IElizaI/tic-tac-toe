@@ -219,6 +219,7 @@ function clickOnElem(event) {
       arrValueCross[cell.dataset.cell] = 1;
       if (compareArrayValues() === 'win') {
         messageAboutWin('Win X!!!');
+        return;
       }
       if (checkFreeCell() !== true) {
         if (compareArrayValues() === 'win') {
