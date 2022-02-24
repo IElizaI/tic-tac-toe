@@ -187,6 +187,9 @@ function searchRandomCell() {
 // Добавление cross или zero по клику
 function clickOnElem(event) {
   const cell = event.target;
+  if (cell.classList.contains('cross') || cell.classList.contains('zero')) {
+    return;
+  }
   if (gameVariant === 'two players') {
     if (move === 'cross') {
       whoseTurn.innerText = 'Turn 0';
